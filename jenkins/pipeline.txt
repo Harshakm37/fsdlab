@@ -1,0 +1,134 @@
+###Create Python Application and Tests
+
+1. Set Up Project Structure:
+   plaintext
+   my_python_app/
+   ├── app/
+   │   ├── _init_.py
+   │   ├── main.py
+   ├── tests/
+   │   ├── _init_.py
+   │   ├── test_main.py
+   ├── requirements.txt
+   ├── Jenkinsfile
+   ├── pytest.ini
+   ├── README.md
+   
+
+-Sample Python Code (Application): app/main.py
+   python
+   def add(a, b):
+       """Adds two numbers."""
+       return a + b
+
+   def subtract(a, b):
+       """Subtracts two numbers."""
+       return a - b
+   
+
+-Sample Tests (Using pytest): tests/test_main.py
+   python
+   from app.main import add, subtract
+
+   def test_add():
+       assert add(3, 5) == 8
+       assert add(-1, 1) == 0
+
+   def test_subtract():
+       assert subtract(10, 5) == 5
+       assert subtract(0, 5) == -5
+   
+
+-Requirements File: requirements.txt
+   plaintext
+   pytest
+   
+
+-pytest Configuration File: pytest.ini
+   plaintext
+   [pytest]
+   addopts = -v
+   testpaths = tests
+   
+
+-3. Configure Jenkins Pipeline
+
+1. Jenkinsfile: Jenkinsfile
+   
+pipeline {
+    agent any
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git branch: 'main', url: 'https://github.com/jai613/newRepo.git'
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                bat 'pip install -r requirements.txt'
+            }
+        }
+        stage('Run Tests') {
+            steps {
+                bat 'pytest'
+            }
+        }
+    }
+}
+   
+
+2. Commit and Push:
+   - Commit the Jenkinsfile and Python project to a GitHub repository.
+
+-4. Configure Ngrok
+1. Download ngrok:
+   - Download and install ngrok from [ngrok.com](https://ngrok.com/).
+
+2. Authenticate ngrok:
+   bash
+   ngrok authtoken <your-authtoken>
+   
+3. Run ngrok:
+   bash
+   ngrok http 8080
+   
+   Copy the HTTPS URL (e.g., https://<random-subdomain>.ngrok.io).
+
+- 5. Configure GitHub Webhook
+1. Go to your repository’s Settings > Webhooks.
+2. Click Add Webhook.
+3. Set the Payload URL:
+   
+   https://<random-subdomain>.ngrok.io/github-webhook/
+   
+4. Set Content Type to application/json.
+5. Select the event: Just the push event.
+6. Save the webhook.
+
+-6. Run the Pipeline
+1. Push any change to the repository.
+2. GitHub will send a webhook to Jenkins via the ngrok URL.
+3. Jenkins will:
+   - Clone the repository.
+   - Install dependencies.
+   - Run the pytest tests.
+4. View results in Jenkins.
+
+---
+
+### Example Output:
+#### Jenkins Console Output
+
+[Pipeline] Start of Pipeline
+[Pipeline] stage (Clone Repository)
+Cloning repository...
+[Pipeline] stage (Install Dependencies)
+Installing pytest...
+[Pipeline] stage (Run Tests)
+Running pytest...
+tests/test_main.py::test_add PASSED
+tests/test_main.py::test_subtract PASSED
+
+
+Now your setup is complete with a Python app, pytest for testing, Jenkins for CI/CD, and GitHub webhooks for automation!
+

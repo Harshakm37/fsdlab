@@ -1,0 +1,31 @@
+1.ssh-keygen -t rsa -b 2048
+hostname -I --> ip address
+whoami ---> username
+2.ssh-copy-id harshini@10.18.115.204  1st 4
+3.ssh-copy-id harshini@10.18.115.204
+4.ssh harshini@10.18.115.204
+5.ssh  harshini@10.18.115.204 'ls'
+6.ssh harshini@10.18.115.204 'cat q6.c'
+error --> sudo apt install openssh-server
+
+
+#Q3 SSH REMOTE-LOCAL CONNECTION
+ssh-keygen -t rsa -b 2048
+ssh-copy-id username@ip
+--create a test.sh in remote system
+ssh username@ip 'bash ~/test.sh'
+
+To transfer file from remote to local: (write this command in a script file--> script.sh)
+scp "username@ip":"filename_remote" "filename_local"
+Then run the script file ---> bash script.sh
+
+To send file from local to remote: (write this command in a script file--> script.sh)
+scp "filename_local" "username@ip":"filename_remote"
+Then run the script file ---> bash script.sh
+
+to install SSH(if not present):
+
+sudo apt install openssh-server
+sudo systemctl start ssh
+sudo systemctl enable ssh
+sudo apt install openjdk-17-jdk

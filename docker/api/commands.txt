@@ -1,0 +1,21 @@
+1.sudo apt update
+2.sudo apt install docker.io
+3.sudo systemctl start docker
+4.sudo systemctl enable docker
+Cd api
+5.sudo docker build -t api.
+6. sudo docker build -t api.
+7.docker run -d -p 5000:5000 api
+
+error-->sudo usermod -aG docker $USER
+8.newgrp docker
+9.docker run -d -p 5000:5000 api
+http://localhost:5000
+
+
+Open terminal:
+python app.py
+Open new terminal and:
+curl http://localhost:5000/products
+curl -X POST http://127.0.0.1:5000/products -H 'Content-Type: application/json' -d 
+'{"name": "Product D", "price": 24.99}

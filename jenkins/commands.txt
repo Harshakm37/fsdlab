@@ -1,0 +1,31 @@
+/// Jenkins for windows:
+
+needed: Jenkins.war,java jdk(17 or 21 not 19)
+command : java -jar jenkins.war --enable-future-java (in cmd )
+
+if git is newly installed then
+
+	1 run the above command
+	2 goto the respective localhost
+	3 find the git.exe file path at C:/
+	4 Manage Jenkins --> Tools --> paste the copied git.exe path in "path_to_executable_git"
+
+
+execute this command in window bash:
+	javac filename.java
+	java  filename
+
+
+/// Jenkins for ubuntu
+Java Intsallation in ubuntu:
+sudo apt install openjdk-17-jre-headless
+sudo apt install git
+
+Install jenkins through : java -jar jenkins.war (download war file from jenkins website)
+Set up ur account with administrator password
+Install suggested plugins
+Give Ctrl+Z and stop 
+now run ---> java -jar jenkins.war --logfile=/home/USER/jenkins.log  (replace with ur USER, *to track server logs)
+
+To transfer Jenkins server log from local to remote
+scp "jenkins.log" "user@ipaddress":"remotelog.txt"

@@ -1,0 +1,36 @@
+1.sudo apt update
+2.sudo apt install docker.io
+3.sudo systemctl start docker
+4.sudo systemctl enable docker
+Cd webapp
+5.sudo docker build -t webapp.
+6. sudo docker build -t webapp.
+7.docker run -d -p 5000:5000 webapp
+
+error-->sudo usermod -aG docker $USER
+8.newgrp docker
+9.docker run -d -p 5000:5000 webapp
+http://localhost:5000
+
+
+#IMAGE
+1.sudo apt update
+2.sudo apt install docker.io
+3.sudo systemctl start docker
+4.sudo systemctl enable docker
+Cd webapp
+5.sudo docker build -t webapp.
+6. sudo docker build -t webapp.
+7.docker run -d -p 5000:5000 webapp
+
+error-->sudo usermod -aG docker $USER
+8.newgrp docker
+9.docker run -d -p 5000:5000 webapp
+curl http://localhost:5000
+
+docker login
+docker push your-dockerhub-username/python-app:latest
+docker pull your-dockerhub-username/python-app:latest
+docker run -d -p 5000:5000 your-dockerhub-username/python-app:latest
+
+
